@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Products.module.css'
+import RecentProduct from '../RecentProduct/RecentProduct'
 
 export default function Products() {
   const [ounter ,setCounter] = useState(0)
@@ -8,8 +9,8 @@ export default function Products() {
   },[])
   return (
     <>
-    <div>Products</div>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae molestias facilis neque.</p>
+
+<RecentProduct/>
     </>
   )
 }

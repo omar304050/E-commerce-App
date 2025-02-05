@@ -11,23 +11,28 @@ import Notfound from './components/Notfound/Notfound'
 import Login from './components/Login/Login'
 import Register from './components/Register/Register'
 import About from './components/About/About'
-import Logout from './components/Logout/Logout'
 import ForgetPassword from './components/ForgetPassword/ForgetPassword'
 import UpdatePassword from './components/UpdatePassword/UpdatePassword'
 import UserContextProvider from './context/UserContext'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import ProductDetails from './components/ProductDetails/ProductDetails.jsx'
+import CartContextProvider from './context/CarContext.jsx'
+import { Toaster } from 'react-hot-toast'
+
 
 let router = createBrowserRouter([
   {
     path: '', element: <Layout />, children: [
-      { index: true, element: <Home /> },
-      { path: "/products", element: <Products /> },
-      { path: 'cart', element: <Cart /> },
-      { path: 'brands', element: <Brands /> },
-      { path: 'categories', element: <Categories /> },
+      { index: true, element: <ProtectedRoute><Home /></ProtectedRoute> },
+      { path: "/products", element: <ProtectedRoute><Products /></ProtectedRoute> },
+      { path: 'cart', element: <ProtectedRoute><Cart /></ProtectedRoute> },
+      { path: 'brands', element: <ProtectedRoute><Brands /></ProtectedRoute> },
+      { path: 'categories', element: <ProtectedRoute> <Categories /> </ProtectedRoute> },
+      { path: 'about', element: <ProtectedRoute><About /></ProtectedRoute> },
+      { path: 'productdetails/:id', element: <ProtectedRoute><ProductDetails /></ProtectedRoute> },
       { path: 'login', element: <Login /> },
-      { path: 'about', element: <About /> },
       { path: 'register', element: <Register /> },
-      { path: 'logout', element: <Logout /> },
       { path: 'forgetpassword', element: <ForgetPassword /> },
       { path: 'updatepassword', element: <UpdatePassword /> },
       { path: '*', element: <Notfound /> },
@@ -41,10 +46,20 @@ export default function App() {
   useEffect(() => {
 
   }, [])
+
+
+  let queryClient = new QueryClient()
   return <>
-    <UserContextProvider>
-      <RouterProvider router={router}></RouterProvider>
-    </UserContextProvider>
+    <CartContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <UserContextProvider>
+          <RouterProvider router={router}></RouterProvider>
+          <Toaster/>
+        </UserContextProvider>
+      </QueryClientProvider>
+    </CartContextProvider>
+
+
 
 
 

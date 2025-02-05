@@ -1,15 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import './Brands.module.css'
+import useApi from '../../Hooks/useApi'
 
 export default function Brands() {
-  const [ounter ,setCounter] = useState(0)
-  useEffect(()=>{
+let {data , isLoading , isError , error} = useApi('brands')
 
-  },[])
-  return (
-    <>
-    <div>Brands</div>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae molestias facilis neque.</p>
-    </>
-  )
+if(isLoading){
+  return<div className='flex justify-center items-center h-screen bg-green-200'>
+<span className="loader"></span>
+</div>
+}
+return (
+  <>
+    <div className='flex flex-wrap'>
+      {data?.data?.data?.map((brands) => {
+        return <div key={brands._id} className='w-3/12'>
+          <img src={brands.image} className='w-full h-48 object-cover object-top' alt={brands.name} />
+          <h3 className='text-center'>{brands.name}</h3>
+        </div>
+
+
+      })}
+    </div>
+  </>
+)
 }

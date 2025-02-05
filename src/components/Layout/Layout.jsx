@@ -12,7 +12,7 @@ export default function Layout() {
   return (
     <>
  <Navbar/>
-<div className='container py-10 '>
+<div className=' datatable-container  py-10  '>
 <Outlet></Outlet>
 </div>
  <Footer/>
