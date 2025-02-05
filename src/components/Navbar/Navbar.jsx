@@ -31,7 +31,7 @@ export default function Navbar() {
 
 
 
-      <nav className="bg-gray-100 border-gray-200 table-fixed z-50 ">
+      <nav className="bg-gray-100 border-gray-200 top-0 left-0 right-0 fixed z-50 ">
         <div className="max-w-screen-xl flex flex-wrap md:flex-col xl:flex-row lg:items-center  gap-3 mx-auto p-4">
           <div className=' flex md:flex-row justify-between w-full md:justify-center
            md:w-auto'>
@@ -39,7 +39,7 @@ export default function Navbar() {
               <img src={ImageLogo} />
 
             </Link>
-            <button data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+            <button data-dropdown-toggle="navbar-default" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
               <span className="sr-only">Open main menu</span>
               <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
