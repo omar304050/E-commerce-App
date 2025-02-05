@@ -31,7 +31,7 @@ export default function Navbar() {
 
 
 
-      <nav className="bg-gray-100 border-gray-200 fixed w-full z-50 ">
+      <nav className="bg-gray-100 border-gray-200 table-fixed z-50 ">
         <div className="max-w-screen-xl flex flex-wrap md:flex-col xl:flex-row lg:items-center  gap-3 mx-auto p-4">
           <div className=' flex md:flex-row justify-between w-full md:justify-center
            md:w-auto'>
