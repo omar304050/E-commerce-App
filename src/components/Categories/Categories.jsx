@@ -15,7 +15,7 @@ export default function Categories() {
       <div className='flex flex-wrap  '>
         {data?.data?.data?.map((category) => {
           return <div key={category._id} className='md:w-3/12 w-full  '>
-            <img src={category.image} className='w-full h-full p-8  object-cover object-top' alt={category.name} />
+            <img src={category.image} className='w-full h-full p-7  object-cover object-top' alt={category.name} />
             <h3 className='text-center'>{category.name}</h3>
           </div>
 
