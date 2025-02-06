@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import React from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './components/Layout/Layout'
@@ -17,8 +16,10 @@ import UserContextProvider from './context/UserContext'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import ProductDetails from './components/ProductDetails/ProductDetails.jsx'
+import CheckOut from './components/CheckOut/CheckOut.jsx'
 import CartContextProvider from './context/CarContext.jsx'
 import { Toaster } from 'react-hot-toast'
+import Orders from './components/Orders/Orders.jsx'
 
 
 let router = createBrowserRouter([
@@ -35,6 +36,8 @@ let router = createBrowserRouter([
       { path: 'register', element: <Register /> },
       { path: 'forgetpassword', element: <ForgetPassword /> },
       { path: 'updatepassword', element: <UpdatePassword /> },
+      { path: 'checkout', element: <CheckOut /> },
+      { path: 'allorders', element: <Orders /> },
       { path: '*', element: <Notfound /> },
     ]
   },
@@ -42,10 +45,7 @@ let router = createBrowserRouter([
 ])
 
 export default function App() {
-  const [ounter, setCounter] = useState(0)
-  useEffect(() => {
 
-  }, [])
 
 
   let queryClient = new QueryClient()

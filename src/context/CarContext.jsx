@@ -1,10 +1,12 @@
 import axios from "axios";
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export let cartContext = createContext()
 
 
 export default function CartContextProvider(props) {
+
+  let [cart ,setToCart]=   useState()
     let headers = {
 
         token: localStorage.getItem("userToken")
@@ -16,6 +18,23 @@ export default function CartContextProvider(props) {
             {
 
                 productId
+            },
+            {
+                headers
+            }
+        )
+            .then((respnse) => respnse)
+            .catch((err) => err)
+
+
+    }
+    function checkOut(catId , url , formValue) {
+
+
+        return axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${catId}?url=${url}`,
+            {
+
+                shippingAddress:formValue
             },
             {
                 headers
@@ -62,7 +81,15 @@ export default function CartContextProvider(props) {
 
     }
 
-    return <cartContext.Provider value={{ addToCart, getCartItem, removeCartItem, ubdateQuntity }}>
+
+   async function getCart(){
+     let data = await getCartItem ()
+     setToCart(data.data)
+    }
+    useEffect(() => {
+     getCart()
+    }, [])
+    return <cartContext.Provider value={{ cart , setToCart , checkOut , addToCart , getCartItem , removeCartItem , ubdateQuntity }}>
         {props.children}
     </cartContext.Provider>
 }

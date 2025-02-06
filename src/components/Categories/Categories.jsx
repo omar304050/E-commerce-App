@@ -12,10 +12,10 @@ export default function Categories() {
   }
   return (
     <>
-      <div className='flex flex-wrap'>
+      <div className='flex flex-wrap  '>
         {data?.data?.data?.map((category) => {
-          return <div key={category._id} className='w-3/12'>
-            <img src={category.image} className='w-full h-48 object-cover object-top' alt={category.name} />
+          return <div key={category._id} className='md:w-3/12 w-full  '>
+            <img src={category.image} className='w-full h-full p-8  object-cover object-top' alt={category.name} />
             <h3 className='text-center'>{category.name}</h3>
           </div>
 

@@ -60,7 +60,7 @@ export default function Login() {
 
         <div className="mb-5">
           <label htmlFor="email" className="block mb-2  active text-sm font-medium text-gray-90">Your Email</label>
-          <input value={loginForm.values.email} onChange={loginForm.handleChange} onBlur={loginForm.handleBlur} name="email" type="text" id="email" className=" border text-sm rounded-lg block w-full p-2.5  " />
+          <input value={loginForm.values.email} onChange={loginForm.handleChange} onBlur={loginForm.handleBlur} name="email" type="email" id="email" className=" border text-sm rounded-lg block w-full p-2.5  " />
           {loginForm.touched.email && loginForm.errors.email ? <p className='text-red-700'>{loginForm.errors.email}</p> : ""}
         </div>
         <div className="mb-5">
