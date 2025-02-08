@@ -49,7 +49,7 @@ export default function RecentProduct() {
 
         {data?.data?.data?.map((product) => {
           return (
-            <div key={product.id} className='lg:w-2/12 md:w-3/12  sm:w-6/12 w-full px-4 py-4'>
+            <div key={product.id} className='lg:w-2/12 md:w-3/12  sm:w-6/12 w-full  px-4 py-4'>
 
               <div className='product border border-green-500 p-3 overflow-hidden rounded-3xl'>
                 <Link to={`productdetails/${product._id}`}>

@@ -60,6 +60,7 @@ export default function Register() {
 
   return (
     <>
+     <h1 className='text-green-500 text-center font-extrabold text-3xl md:text-4xl lg:text-5xl my-4 '>Register Now</h1>
       {errorMessage ? <div class="p-4 mb-4 text-sm text-center w-1/2 mx-auto text-red-800 rounded-lg bg-red-50 dark:text-red-400" role="alert">
         <p>{errorMessage}</p>
       </div> : ""}

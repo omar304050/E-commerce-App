@@ -12,6 +12,7 @@ export default function Categories() {
   }
   return (
     <>
+    
       <div className='flex flex-wrap  '>
         {data?.data?.data?.map((category) => {
           return <div key={category._id} className='md:w-3/12 w-full  '>

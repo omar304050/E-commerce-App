@@ -44,8 +44,8 @@ export default function Navbar() {
               </svg>
             </button>
           </div>
-          <div className=" md:flex md:gap-2 xl:gap-60 md:justify-center md:ms-20 xl:justify-end xl:ms-0    hidden w-full  md:w-4/5 " id="navbar-default">
-            <ul className="font-medium flex flex-col  p-4 md:p-0 mt-4   rounded-lg bg-gray-100 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0  ">
+          <div className=" md:flex md:gap-2 xl:justify-between md:justify-center md:ms-20  xl:ms-0    hidden w-full  md:w-4/5 " id="navbar-default">
+            <ul className="font-medium flex flex-col   p-4 md:p-0 mt-4   rounded-lg bg-gray-100 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0  ">
               {userLogin !== null ? <>
                 <li>
                   <NavLink to="/" className="block py-2      rounded  md:p-0 text-black" aria-current="page">Home</NavLink>
@@ -64,7 +64,7 @@ export default function Navbar() {
 
 
             </ul>
-            <ul className="font-medium flex flex-col p-4 md:p-0   rounded-lg bg-gray-100 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 ">
+            <ul className="font-medium flex flex-col p-4 md:p-0  md:ms-4 rounded-lg bg-gray-100 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 ">
 
               {userLogin === null ? <>
                 <li>
