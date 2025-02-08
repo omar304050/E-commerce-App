@@ -73,3 +73,9 @@ body{
     width: 95%;
     margin: auto;
   }
+
+  html , body{
+
+    overflow: hidden;
+    width: 100%;
+  }

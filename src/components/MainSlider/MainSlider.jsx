@@ -9,6 +9,7 @@ export default function MainSlider() {
     let settings = {
         infinite: true,
         speed: 100,
+        autoplay:true,
         slidesToShow: 1,
         arrows: false,
       
