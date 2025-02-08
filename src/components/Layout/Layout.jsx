@@ -6,13 +6,13 @@ import { Outlet } from 'react-router-dom'
 export default function Layout() {
   return (
     <>
-<div className=''>
+
 <Navbar/>
-<div className='   py-6 myContainer '>
+<div className='   py-6  '>
 <Outlet></Outlet>
 </div>
  <Footer/>
-</div>
+
     </>
   )
 }

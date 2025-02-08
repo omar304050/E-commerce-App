@@ -29,7 +29,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="bg-gray-100 border-gray-200 sticky top-0 z-50">
+      <nav className="bg-gray-100 border-gray-200  z-50">
         <div className="max-w-screen-xl flex flex-wrap md:flex-col xl:flex-row lg:items-center  gap-3 mx-auto p-4">
           <div className=' flex md:flex-row justify-between w-full md:justify-center
            md:w-auto'>

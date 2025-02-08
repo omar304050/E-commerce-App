@@ -9,7 +9,7 @@ export default function CategorySlider() {
     let settings = {
         dots:false ,
         infinite: true,
-        speed: 500 ,
+        speed: 100 ,
         autoplay:true,
         slidesToShow: 4,
         slidesToScroll: 4,
