@@ -33,7 +33,7 @@ export default function Navbar() {
         <div className="max-w-screen-xl flex flex-wrap md:flex-col xl:flex-row lg:items-center  gap-3 mx-auto p-4">
           <div className=' flex md:flex-row justify-between w-full md:justify-center
            md:w-auto'>
-            <Link to="" className="">
+            <Link to={"/"} className="">
               <img src={ImageLogo} />
 
             </Link>

@@ -67,3 +67,9 @@ body{
   @keyframes ht {
     100% { height: 0px }
   }
+
+
+  .myContainer{
+    width: 95%;
+    margin: auto;
+  }
