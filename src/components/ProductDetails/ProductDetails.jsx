@@ -26,9 +26,9 @@ export default function Details() {
   return (
     <>
       <div className='mx-auto w-9/12 my-16'>
-        <div className='flex justify-between items-center'>
-          <div className='w-3/12'>
-            {/* <img src={ProductDetails?.imageCover} alt="" /> */}
+        <div className='flex flex-col md:flex-row gap-10 justify-between items-center'>
+          <div className=' md:w-3/12 w-full '>
+            
             <Slider dots>
 
             { ProductDetails?.images?.map((image,i)=>{
@@ -42,7 +42,7 @@ export default function Details() {
 
             </Slider>
           </div>
-          <div className='w-8/12 items-center'>
+          <div className='md:w-8/12 w-full items-center text-center md:text-start'>
             <h2>{ProductDetails?.title}</h2>
             <p className='text-gray-500 my-5'>{ProductDetails?.description}</p>
 
