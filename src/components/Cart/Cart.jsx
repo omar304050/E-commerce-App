@@ -8,23 +8,35 @@ export default function Cart() {
   let { getCartItem, removeCartItem, ubdateQuntity, setToCart } = useContext(cartContext);
 
   async function removeItem(productId) {
-    let data = await removeCartItem(productId);
-    setCartDetails(data.data);
-    setToCart(data.data);
+    try {
+      let data = await removeCartItem(productId);
+      setCartDetails(data.data);
+      setToCart(data.data);
+    } catch (err) {
+      console.error("Error in removeItem:", err);
+    }
   }
 
   async function getCart() {
-    let data = await getCartItem();
-    setCartDetails(data.data);
-    console.log(data.data);
+    try {
+      let data = await getCartItem();
+      setCartDetails(data.data);
+      console.log(data.data);
+    } catch (err) {
+      console.error("Error in getCart:", err);
+    }
   }
 
   async function udateCart(productId, count) {
-    if (count < 1) {
-      removeItem(productId);
-    } else {
-      let data = await ubdateQuntity(productId, count);
-      setCartDetails(data.data);
+    try {
+      if (count < 1) {
+        removeItem(productId);
+      } else {
+        let data = await ubdateQuntity(productId, count);
+        setCartDetails(data.data);
+      }
+    } catch (err) {
+      console.error("Error in udateCart:", err);
     }
   }
 
@@ -38,29 +50,21 @@ export default function Cart() {
       <div className="relative mt-8 overflow-x-auto shadow-md sm:rounded-lg hidden md:block">
         <table className="w-full md:w-3/4 mx-auto text-sm text-left rtl:text-right text-gray-500">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-            <tr className="flex justify-between items-center">
+            <tr>
               <th scope="col" className="px-16 py-3">
                 <span className="sr-only">Image</span>
               </th>
-              <th scope="col" className="px-6 py-3">
-                Product
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Qty
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Price
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Action
-              </th>
+              <th scope="col" className="px-6 py-3">Product</th>
+              <th scope="col" className="px-6 py-3">Qty</th>
+              <th scope="col" className="px-6 py-3">Price</th>
+              <th scope="col" className="px-6 py-3">Action</th>
             </tr>
           </thead>
           <tbody>
             {cartDetails?.data.products.map((product) => (
               <tr
                 key={product.product.id}
-                className="bg-white border-b flex justify-between items-center border-gray-200 hover:bg-gray-50"
+                className="bg-white border-b hover:bg-gray-50"
               >
                 <td className="p-4">
                   <img
@@ -69,7 +73,7 @@ export default function Cart() {
                     alt={product.product.title}
                   />
                 </td>
-                <td className="px-6 py-4 font-semibold text-gray-900 md:w-1/5">
+                <td className="px-6 py-4 font-semibold text-gray-900">
                   {product.product.title}
                 </td>
                 <td className="px-6 py-4">
@@ -98,9 +102,7 @@ export default function Cart() {
                         />
                       </svg>
                     </button>
-                    <div>
-                      <span>{product.count}</span>
-                    </div>
+                    <span>{product.count}</span>
                     <button
                       onClick={() =>
                         udateCart(product.product.id, product.count + 1)
