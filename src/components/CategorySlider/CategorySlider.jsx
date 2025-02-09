@@ -2,6 +2,10 @@ import React from "react";
 import Slider from "react-slick";
 import useApi from "../../Hooks/useApi";
 
+// تأكد من استيراد ملفات CSS الخاصة بـ react-slick إذا لم تكن مستوردة في مكان آخر
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
 export default function CategorySlider() {
   const { data, isLoading, isError, error } = useApi("categories");
 
@@ -50,7 +54,8 @@ export default function CategorySlider() {
   }
 
   return (
-    <>
+    // حاوية مركزية مع padding أفقي لضمان عدم خروج المحتوى عن المسار
+    <div className="container mx-auto px-4">
       {isLoading ? (
         <div className="flex justify-center items-center h-screen bg-green-200">
           <span className="loader"></span>
@@ -69,6 +74,6 @@ export default function CategorySlider() {
           ))}
         </Slider>
       )}
-    </>
+    </div>
   );
 }

@@ -20,28 +20,27 @@ export default function Navbar() {
 
   return (
     <nav className="bg-gray-100 border-gray-200 sticky top-0 z-50">
-      <div className="max-w-screen-xl flex flex-wrap md:flex-col xl:flex-row lg:items-center gap-3 mx-auto p-4">
-        {/* الشعار وزر الهامبرغر (يظهر على الموبايل فقط) */}
-        <div className="flex md:flex-row justify-between w-full md:justify-center md:w-auto">
+      <div className="max-w-screen-xl flex flex-col xl:flex-row lg:items-center gap-3 mx-auto p-4">
+        {/* الشعار وزر الهامبرغر (يظهر على الشاشات الصغيرة) */}
+        <div className="flex justify-between w-full md:flex-row md:justify-center md:w-auto">
           <Link to="/">
             <img src={ImageLogo} alt="Logo" />
           </Link>
-          {/* زر الهامبرغر يُعرض فقط على الشاشات الصغيرة */}
           <div className="md:hidden">
             <Hamburger toggled={isMenuOpen} toggle={setIsMenuOpen} />
           </div>
         </div>
-        {/* القائمة الرئيسية: 
+        {/* القائمة الرئيسية:
               - على الشاشات الصغيرة تُعرض بناءً على حالة isMenuOpen.
               - على الشاشات المتوسطة وما فوق تظهر دائمًا بفضل md:flex */}
         <div
           className={`
             ${isMenuOpen ? "block" : "hidden"} 
-            md:flex md:gap-2 xl:justify-between md:justify-center ml-20 xl:ml-0 w-full md:w-4/5
+            md:flex md:gap-2 xl:justify-between md:justify-center w-full md:w-4/5 mx-auto
           `}
           id="navbar-default"
         >
-          {/* أول مجموعة: الروابط الخاصة بالمستخدم (Home, Products, Categories, Brands) */}
+          {/* المجموعة الأولى: روابط المستخدم (Home, Products, Categories, Brands) */}
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg bg-gray-100 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0">
             {userLogin !== null && (
               <>
@@ -68,7 +67,7 @@ export default function Navbar() {
               </>
             )}
           </ul>
-          {/* ثاني مجموعة: روابط الدخول والتسجيل/الخروج وعربة التسوق */}
+          {/* المجموعة الثانية: روابط الدخول/التسجيل/الخروج وعربة التسوق */}
           <ul className="font-medium flex flex-col p-4 md:p-0 md:ml-4 rounded-lg bg-gray-100 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0">
             {userLogin === null ? (
               <>
@@ -84,7 +83,7 @@ export default function Navbar() {
                 </li>
               </>
             ) : (
-              <div className="flex flex-col md:flex-row  gap-3">
+              <div className="flex flex-col md:flex-row gap-3">
                 <li onClick={logOut}>
                   <span className="block py-2 md:p-0 cursor-pointer">
                     Logout
