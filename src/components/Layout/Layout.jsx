@@ -8,7 +8,7 @@ export default function Layout() {
     <>
 
 <Navbar/>
-<div className='   py-6  '>
+<div className='  myContainer py-6  '>
 <Outlet></Outlet>
 </div>
  <Footer/>

@@ -16,10 +16,10 @@ export default function MainSlider() {
     };
     return (
         <div className=" md:flex  ">
-            <div className="w-full md:w-9/12">
+            <div className="w-full md:w-9/12 ">
                 <Slider {...settings}>
                     <div>
-                        <img src={img1} className="w-full h-96 object-cover" alt="" />
+                        <img src={img1} className="w-full h-96 object-cover " alt="" />
                     </div>
                     <div>
                         <img src={img2} className="w-full h-96 object-cover" alt="" />
@@ -29,9 +29,9 @@ export default function MainSlider() {
                     </div>
                 </Slider>
             </div>
-            <div className="w-full md:w-3/12 flex flex-col">
-                <img src={img1} className=" h-48 w-full object-cover" alt="" />
-                <img src={img2} className=" h-48 w-full object-cover " alt="" />
+            <div className=" flex-row md:w-3/12 flex pb-7 md:flex-col">
+                <img src={img1} className=" h-48 md:w-full w-1/2 object-cover" alt="" />
+                <img src={img2} className=" h-48 md:w-full  w-1/2 object-cover " alt="" />
             </div>
         </div>
     );

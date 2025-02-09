@@ -84,7 +84,7 @@ export default function Navbar() {
                 </li>
               </>
             ) : (
-              <div className="flex flex-col md:flex-row gap-3">
+              <div className="flex flex-col md:flex-row  gap-3">
                 <li onClick={logOut}>
                   <span className="block py-2 md:p-0 cursor-pointer">
                     Logout
