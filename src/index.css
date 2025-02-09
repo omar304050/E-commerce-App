@@ -17,6 +17,12 @@
 
 
 }
+.btn3{
+
+    @apply  rounded-lg text-white  bg-green-500 
+
+
+}
 
 .btn{
     transition: all 0.5s;
