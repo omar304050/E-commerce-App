@@ -31,7 +31,7 @@ export default function Footer() {
                 <img src={img4} className='w-20 md:w-14' alt="" />
               </div>
             </div>
-            <div className='flex flex-col md:flex-row items-center gap-2'>
+            <div className='flex flex-col mt-4 md:flex-row items-center gap-2'>
               <h1 className='text-lg font-bold'>Get deliveris with FreshCart </h1>
               <div className='flex flex-row'>
                 <img src={img5} className='w-20' alt="" />

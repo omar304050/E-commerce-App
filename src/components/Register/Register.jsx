@@ -40,7 +40,7 @@ export default function Register() {
         if (req.data.message == "success") {
           localStorage.setItem("userToken", req.data.token)
           setUserLogin(req.data.token)
-          navgate("/home")
+          navgate("/")
         }
 
 

@@ -47,7 +47,7 @@ export default function Cart() {
   return (
     <>
       {/* Desktop View: Table Layout (visible from md and above) */}
-      <div className="relative mt-8 overflow-x-auto shadow-md sm:rounded-lg hidden md:block">
+      <div className="relative mt-8 overflow-x-auto shadow-md sm:rounded-lg  hidden md:block">
         <table className="w-full md:w-3/4 mx-auto text-sm text-left rtl:text-right text-gray-500">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
@@ -234,8 +234,8 @@ export default function Cart() {
             </div>
           </div>
         ))}
-        <Link to="/checkout">
-          <button className="bg-green-500 text-white w-full py-3 rounded-md">
+        <Link to="/checkout" >
+          <button className="bg-green-500 text-white w-full py-3 rounded-md ">
             CheckOut Now
           </button>
         </Link>
