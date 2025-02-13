@@ -45,22 +45,22 @@ export default function Navbar() {
             {userLogin !== null && (
               <>
                 <li>
-                  <NavLink to="/" className="block py-2 rounded md:p-0 text-black">
+                  <NavLink onClick={()=>setIsMenuOpen(false)} to="/" className="block py-2 rounded md:p-0 text-black">
                     Home
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/products" className="block py-2 rounded md:p-0 text-black">
+                  <NavLink onClick={()=>setIsMenuOpen(false)} to="/products" className="block py-2 rounded md:p-0 text-black">
                     Products
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/categories" className="block py-2 rounded md:p-0 text-black">
+                  <NavLink onClick={()=>setIsMenuOpen(false)} to="/categories" className="block py-2 rounded md:p-0 text-black">
                     Categories
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/brands" className="block py-2 rounded md:p-0 text-black">
+                  <NavLink onClick={()=>setIsMenuOpen(false)} to="/brands" className="block py-2 rounded md:p-0 text-black">
                     Brands
                   </NavLink>
                 </li>
@@ -72,25 +72,25 @@ export default function Navbar() {
             {userLogin === null ? (
               <>
                 <li>
-                  <NavLink to="/login" className="block py-2 md:p-0">
+                  <NavLink onClick={()=>setIsMenuOpen(false)} to="/login" className="block py-2 md:p-0">
                     Login
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/register" className="block py-2 md:p-0">
+                  <NavLink onClick={()=>setIsMenuOpen(false)} to="/register" className="block py-2 md:p-0">
                     Register
                   </NavLink>
                 </li>
               </>
             ) : (
-              <div className="flex flex-col md:flex-row gap-3">
+              <div onClick={()=>setIsMenuOpen(false)} className="flex flex-col md:flex-row gap-3">
                 <li onClick={logOut}>
                   <span className="block py-2 md:p-0 cursor-pointer">
                     Logout
                   </span>
                 </li>
                 <li>
-                  <Link to="/cart" className="block py-2 md:p-0">
+                  <Link onClick={()=>setIsMenuOpen(false)} to="/cart" className="block py-2 md:p-0">
                     <div className="relative">
                       {cart?.numOfCartItems && (
                         <span className="absolute h-7 w-7 flex justify-center items-center bottom-1/2 left-3 bg-green-400 rounded-full py-0.5 px-1.5 text-white">

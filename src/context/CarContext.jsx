@@ -6,7 +6,7 @@ export let cartContext = createContext()
 
 export default function CartContextProvider(props) {
 
-  let [cart ,setToCart]=   useState()
+  let [cart ,setToCart]=   useState(null)
     let headers = {
 
         token: localStorage.getItem("userToken")
