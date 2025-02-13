@@ -7,10 +7,11 @@ export let cartContext = createContext()
 export default function CartContextProvider(props) {
 
   let [cart ,setToCart]=   useState(null)
-    let headers = {
-
-        token: localStorage.getItem("userToken")
-    }
+  function getHeaders() {
+    return {
+      token: localStorage.getItem("userToken"), // تحديث التوكن ديناميكيًا
+    };
+  }
     function addToCart(productId) {
 
 
@@ -37,7 +38,7 @@ export default function CartContextProvider(props) {
                 shippingAddress:formValue
             },
             {
-                headers :headers
+                headers :getHeaders()
             }
         )
             .then((respnse) => respnse)
@@ -49,7 +50,7 @@ export default function CartContextProvider(props) {
 
         return axios.delete(`https://ecommerce.routemisr.com/api/v1/cart/${productId}`,
             {
-                headers:headers
+                headers:getHeaders()
             }
         )
             .then((respnse) => respnse)
@@ -64,7 +65,7 @@ export default function CartContextProvider(props) {
                 count
             },
             {
-                headers:headers
+                headers:getHeaders()
             }
         )
             .then((respnse) => respnse)
@@ -76,7 +77,7 @@ export default function CartContextProvider(props) {
     function getCartItem() {
 
         return axios.get(`https://ecommerce.routemisr.com/api/v1/cart`, {
-            headers :headers
+            headers :getHeaders()
         })
 
     }
