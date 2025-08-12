@@ -1,42 +1,56 @@
-import React, { useContext, useEffect, useState } from 'react';
-import './Cart.module.css';
-import { cartContext } from '../../context/CarContext';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from "react";
+import "./Cart.module.css";
+import {cartContext} from "../../context/CarContext"
+import { Link } from "react-router-dom";
 
 export default function Cart() {
   const [cartDetails, setCartDetails] = useState(null);
-  let { getCartItem, removeCartItem, ubdateQuntity, setToCart } = useContext(cartContext);
+  const [isLoading, setIsLoading] = useState(false);
+  let { getCartItem, removeCartItem, ubdateQuntity, setToCart } =
+    useContext(cartContext);
+  const tHead = [
+    { label: "Image", className: "px-16 py-3", srOnly: true },
+    { label: "Product", className: "px-6 py-3" },
+    { label: "Qty", className: "px-6 py-3" },
+    { label: "Price", className: "px-6 py-3" },
+    { label: "Action", className: "px-6 py-3" },
+  ];
 
-  async function removeItem(productId) {
-    try {
-      let data = await removeCartItem(productId);
-      setCartDetails(data.data);
-      setToCart(data.data);
-    } catch (err) {
-      console.error("Error in removeItem:", err);
-    }
+  function removeItem(productId) {
+    removeCartItem(productId)
+      .then((res) => {
+        console.log(res.data.data.products);
+        setCartDetails(res.data);
+        setToCart(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   async function getCart() {
     try {
+      setIsLoading(true)
       let data = await getCartItem();
       setCartDetails(data.data);
       console.log(data.data);
+      setIsLoading(false)
     } catch (err) {
       console.error("Error in getCart:", err);
     }
   }
 
-  async function udateCart(productId, count) {
-    try {
-      if (count < 1) {
-        removeItem(productId);
-      } else {
-        let data = await ubdateQuntity(productId, count);
-        setCartDetails(data.data);
-      }
-    } catch (err) {
-      console.error("Error in udateCart:", err);
+  function udateCart(productId, count) {
+    if (count < 0) {
+      removeItem(productId);
+    } else {
+      ubdateQuntity(productId, count)
+        .then((data) => {
+          setCartDetails(data.data);
+        })
+        .catch((er) => {
+          console.log(er);
+        });
     }
   }
 
@@ -47,19 +61,26 @@ export default function Cart() {
   return (
     <>
       {/* Desktop View: Table Layout (visible from md and above) */}
-      <div className="relative mt-8 overflow-x-auto shadow-md sm:rounded-lg  hidden md:block">
+      {isLoading ? (
+        <div className="flex justify-center items-center h-screen bg-green-200">
+          <span className="loader"></span>
+        </div>
+      ) :<div className="relative mt-8 overflow-x-auto shadow-md sm:rounded-lg  hidden md:block">
         <table className="w-full md:w-3/4 mx-auto text-sm text-left rtl:text-right text-gray-500">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
-              <th scope="col" className="px-16 py-3">
-                <span className="sr-only">Image</span>
-              </th>
-              <th scope="col" className="px-6 py-3">Product</th>
-              <th scope="col" className="px-6 py-3">Qty</th>
-              <th scope="col" className="px-6 py-3">Price</th>
-              <th scope="col" className="px-6 py-3">Action</th>
+              {tHead.map((col, index) => (
+                <th key={index} className={col.className}>
+                  {col.srOnly ? (
+                    <span className="sr-only">{col.label}</span>
+                  ) : (
+                    col.label
+                  )}
+                </th>
+              ))}
             </tr>
           </thead>
+
           <tbody>
             {cartDetails?.data.products.map((product) => (
               <tr
@@ -153,7 +174,8 @@ export default function Cart() {
             </button>
           </Link>
         </div>
-      </div>
+      </div> }
+      
 
       {/* Mobile View: Card Layout (visible on small screens) */}
       <div className="mt-8 md:hidden space-y-4 px-4">
@@ -169,9 +191,7 @@ export default function Cart() {
                 alt={product.product.title}
               />
               <div className="ml-4 flex-1">
-                <h3 className="text-lg font-bold">
-                  {product.product.title}
-                </h3>
+                <h3 className="text-lg font-bold">{product.product.title}</h3>
                 <p className="text-green-500 font-semibold">
                   {product.price * product.count} EGP
                 </p>
@@ -234,7 +254,7 @@ export default function Cart() {
             </div>
           </div>
         ))}
-        <Link to="/checkout" >
+        <Link to="/checkout">
           <button className="bg-green-500 text-white w-full py-3 rounded-md ">
             CheckOut Now
           </button>

@@ -1,111 +1,43 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
-
-export let cartContext = createContext()
-
+import { createContext, useState } from "react";
+import cart_api from "../apis/cart_api";
+export let cartContext = createContext();
 
 export default function CartContextProvider(props) {
+  let [cart, setToCart] = useState();
 
-    let [cart, setToCart] = useState()
+  function addToCart(productId) {
+    return cart_api.addToCart(productId);
+  }
+  function checkOut(cartId, url, formValue) {
+    return cart_api.checkOut(cartId, url, formValue);
+  }
 
-    function addToCart(productId) {
-        let headers = {
+  function removeCartItem(productId) {
+    return cart_api.removeCart(productId);
+  }
 
-            token: localStorage.getItem("userToken")
-        }
+  function ubdateQuntity(productId, count) {
+    return cart_api.ubdateQuntity(productId, count);
+  }
 
-        return axios.post(`https://ecommerce.routemisr.com/api/v1/cart`,
-            {
+  function getCartItem() {
+   return  cart_api.getCartItem();
+  }
 
-                productId
-            },
-            {
-                headers: headers
-            }
-        )
-            .then((respnse) => respnse)
-            .catch((err) => err)
-
-
-    }
-    function checkOut(catId, url, formValue) {
-
-
-        return axios.post(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${catId}?url=${url}`,
-            {
-
-                shippingAddress: formValue
-            },
-            {
-                headers: headers
-            }
-        )
-            .then((respnse) => respnse)
-            .catch((err) => err)
-
-
-    }
-    function removeCartItem(productId) {
-
-        let headers = {
-
-            token: localStorage.getItem("userToken")
-        }
-
-        return axios.delete(`https://ecommerce.routemisr.com/api/v1/cart/${productId}`,
-            {
-                headers: headers
-            }
-        )
-            .then((respnse) => respnse)
-            .catch((err) => err)
-
-
-    }
-    function ubdateQuntity(productId, count) {
-
-        let headers = {
-
-            token: localStorage.getItem("userToken")
-        }
-
-        return axios.put(`https://ecommerce.routemisr.com/api/v1/cart/${productId}`,
-            {
-                count
-            },
-            {
-                headers: headers
-            }
-        )
-            .then((respnse) => respnse)
-            .catch((err) => err)
-
-
-    }
-
-    function getCartItem() {
-
-        let headers = {
-
-            token: localStorage.getItem("userToken")
-        }
-        return axios.get(`https://ecommerce.routemisr.com/api/v1/cart`, {
-            headers: headers
-        })
-
-    }
-
-
-    async function getCart() {
-        let data = await getCartItem()
-        setToCart(data.data)
-    }
-    useEffect(() => {
-        getCart()
-
-
-    }, [])
-    return <cartContext.Provider value={{ cart, setToCart, checkOut, addToCart, getCartItem, removeCartItem, ubdateQuntity }}>
-        {props.children}
+  return (
+    <cartContext.Provider
+      value={{
+        cart,
+        setToCart,
+        checkOut,
+        addToCart,
+        getCartItem,
+        removeCartItem,
+        ubdateQuntity,
+      }}
+    >
+      {props.children}
     </cartContext.Provider>
+  );
 }

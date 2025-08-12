@@ -13,8 +13,10 @@ export default function MainSlider() {
     arrows: false,
   };
 
+
   return (
     <div className="md:flex">
+      
       {/* القسم الأول: Slider */}
       <div className="w-full md:w-9/12">
         <Slider {...settings}>
