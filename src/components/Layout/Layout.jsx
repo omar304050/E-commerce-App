@@ -14,7 +14,7 @@ export default function Layout() {
         <div className="  myContainer py-6  ">
           <Outlet></Outlet>
         </div>
-        {userLogin ? userLogin : ""}
+        {userLogin ? <Footer /> : ""}
       </div>
     </>
   );
