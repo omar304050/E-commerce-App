@@ -68,7 +68,7 @@ export default function Navbar() {
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg bg-gray-100 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0">
             {userLogin !== null &&
               userLinks.map(({ to, label }) => (
-                <li key={to} >
+                <li key={to}>
                   <NavLink
                     onClick={() => setIsMenuOpen(false)}
                     to={to}
@@ -80,8 +80,9 @@ export default function Navbar() {
               ))}
           </ul>
 
+         
           {/* المجموعة الثانية */}
-          <ul className="font-medium flex flex-col md:flex-row gap-5 items-center  p-4 md:p-0 md:ml-4 rounded-lg bg-gray-100 md:space-x-8 rtl:space-x-reverse md:mt-0">
+          <ul className="font-medium flex flex-col md:flex-row gap-5 items-center p-4 md:p-0 md:ml-4 rounded-lg bg-gray-100 md:space-x-8 rtl:space-x-reverse md:mt-0">
             {userLogin === null ? (
               guestLinks.map(({ to, label }) => (
                 <li key={to}>
@@ -97,8 +98,25 @@ export default function Navbar() {
             ) : (
               <div
                 onClick={() => setIsMenuOpen(false)}
-                className="flex  md:flex-row gap-3"
+                className="flex md:flex-row gap-3 items-center"
               >
+                {/* زر الكارت */}
+                <li>
+                  <Link
+                    to="/cart"
+                    className="relative flex items-center gap-1 text-green-600 hover:text-pink-500"
+                  >
+                    <i className="fa-solid fa-cart-shopping text-xl"></i>
+                    {/* البادج بتاع عدد المنتجات */}
+                    {cart?.numOfCartItems > 0 && (
+                      <span className="absolute -top-4 -right-3 bg-pink-500 text-white text-xs rounded-full px-2 py-0.5">
+                        {cart.numOfCartItems}
+                      </span>
+                    )}
+                  </Link>
+                </li>
+
+                {/* زر تسجيل الخروج */}
                 <li onClick={logOut}>
                   <span className="block py-2 md:p-0 cursor-pointer">
                     Logout
@@ -114,13 +132,12 @@ export default function Navbar() {
                   key={idx}
                   to={href}
                   className="
-        block py-2 md:p-0 text-green-600
-        transition-transform duration-300 ease-in-out
-        hover:scale-125 hover:text-pink-500
-        hover:rotate-[15deg] hover:shadow-lg hover:shadow-pink-400/50
-        active:scale-110 active:rotate-0
+          block py-2 md:p-0 text-green-600
+          transition-transform duration-300 ease-in-out
+          hover:scale-125 hover:text-pink-500
+          hover:rotate-[15deg] hover:shadow-lg hover:shadow-pink-400/50
+          active:scale-110 active:rotate-0
         "
-                 
                 >
                   <i className={`${iconClass} text-2xl`}></i>
                 </Link>
